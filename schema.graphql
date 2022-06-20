@@ -1,0 +1,13 @@
+type Stem @entity {
+  id: ID! #id is a required field
+  sender: String
+
+  musicId: String
+}
+type StemRecord @entity {
+  id: ID! #id is a required field
+  musicId: String
+  cid: String
+  name: String
+  type: String
+}
