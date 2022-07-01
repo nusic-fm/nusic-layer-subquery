@@ -15,8 +15,8 @@ repository: "https://github.com/subquery/subql-starter"
 schema:
   file: ./schema.graphql
 network:
-  chainId: "0x307d49e74648268c1184ff41aeb46da62a4071b5aa7a17eefc92d2598c8c3f0e"
-  endpoint: "ws://172.29.9.25:9944"
+  chainId: "0xc5a48a57c16dbc829c7a61b20eaf430ad9c6a02a5ae3343994313bfa65f096b5"
+  endpoint: "wss://node-6948493832736464896.rz.onfinality.io/ws?apikey=78d805ee-1473-4737-a764-1b9fece4dd60"
   dictionary: "https://api.subquery.network/sq/subquery/polkadot-dictionary"
 dataSources:
   - kind: substrate/Runtime
