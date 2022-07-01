@@ -29,10 +29,10 @@ dataSources:
         - handler: handleEvent
           kind: substrate/EventHandler
           filter:
-            module: templateModule
+            module: uploadModule
             method: StemCreated
         - handler: handleCall
           kind: substrate/CallHandler
           filter:
-            module: templateModule
+            module: uploadModule
             method: createStem
