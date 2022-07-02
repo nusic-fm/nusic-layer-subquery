@@ -26,12 +26,22 @@ dataSources:
       handlers:
         # - handler: handleBlock
         #   kind: substrate/BlockHandler
-        - handler: handleEvent
-          kind: substrate/EventHandler
+        # - handler: handleEvent
+        #   kind: substrate/EventHandler
+        #   filter:
+        #     module: uploadModule
+        #     method: StemCreated
+        - handler: handleFullTrackCall
+          kind: substrate/CallHandler
           filter:
             module: uploadModule
-            method: StemCreated
-        - handler: handleCall
+            method: createFulltrack
+        - handler: handleSectionCall
+          kind: substrate/CallHandler
+          filter:
+            module: uploadModule
+            method: createSection
+        - handler: handleStemCall
           kind: substrate/CallHandler
           filter:
             module: uploadModule

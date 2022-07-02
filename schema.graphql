@@ -11,3 +11,32 @@ type StemRecord @entity {
   name: String
   type: String
 }
+
+type SectionRecord @entity {
+  id: ID! #id is a required field
+  musicId: String
+  name: String
+  startTimeMs: String
+  endTimeMs: String
+  bars: String
+  beats: String
+}
+
+type FullTrackRecord @entity {
+  id: ID! #id is a required field
+  musicId: String
+  cid: String
+  artistName: String
+  trackTitle: String
+  albumName: String
+  genre: String
+  bpm: String
+  key: String
+  timeSignature: String
+  bars: String
+  beats: String
+  duration: String
+  startBeatOffsetMs: String
+  sectionsCount: String
+  stemsCount: String
+}

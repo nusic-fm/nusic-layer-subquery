@@ -3,7 +3,7 @@ import {
   SubstrateEvent,
   SubstrateBlock,
 } from "@subql/types";
-import { Stem, StemRecord } from "../types";
+import { Stem, StemRecord, SectionRecord, FullTrackRecord } from "../types";
 
 // export async function handleBlock(block: SubstrateBlock): Promise<void> {
 //     //Create a new starterEntity with ID using block hash
@@ -28,7 +28,7 @@ export async function handleEvent(event: SubstrateEvent): Promise<void> {
   await stem.save();
 }
 
-export async function handleCall(callData: SubstrateExtrinsic): Promise<void> {
+export async function handleStemCall(callData: SubstrateExtrinsic): Promise<void> {
   const [musicId, cid, name, type] = callData.extrinsic.args;
   //Retrieve the record by its ID
   const stemRecord = new StemRecord(musicId.toHuman().toString());
@@ -37,4 +37,38 @@ export async function handleCall(callData: SubstrateExtrinsic): Promise<void> {
   stemRecord.name = name.toHuman().toString();
   stemRecord.type = type.toHuman().toString();
   await stemRecord.save();
+}
+
+export async function handleSectionCall(callData: SubstrateExtrinsic): Promise<void> {
+  const [musicId, sectionName, startTimeMs, endTimeMs, beats, bars] = callData.extrinsic.args;
+  //Retrieve the record by its ID
+  const sectionRecord = new SectionRecord(musicId.toHuman().toString());
+  sectionRecord.musicId = musicId.toHuman().toString();
+  sectionRecord.name = sectionName.toHuman().toString();
+  sectionRecord.startTimeMs = startTimeMs.toHuman().toString();
+  sectionRecord.endTimeMs = endTimeMs.toHuman().toString();
+  sectionRecord.beats = beats.toHuman().toString();
+  sectionRecord.bars = bars.toHuman().toString();
+  await sectionRecord.save();
+}
+export async function handleFullTrackCall(callData: SubstrateExtrinsic): Promise<void> {
+  const [musicId, cid, artistName, trackTitle, albumName, genre, bpm, key, timeSignature, bars, beats, duration, startBeatOffsetMs, sectionsCount, stemsCount] = callData.extrinsic.args;
+  //Retrieve the record by its ID
+  const fullTrackRecord = new FullTrackRecord(musicId.toHuman().toString());
+  fullTrackRecord.musicId = musicId.toHuman().toString();
+  fullTrackRecord.cid = cid.toHuman().toString();
+  fullTrackRecord.artistName = artistName.toHuman().toString();
+  fullTrackRecord.trackTitle = trackTitle.toHuman().toString();
+  fullTrackRecord.albumName = albumName.toHuman().toString();
+  fullTrackRecord.genre = genre.toHuman().toString();
+  fullTrackRecord.bpm = bpm.toHuman().toString();
+  fullTrackRecord.key = key.toHuman().toString();
+  fullTrackRecord.timeSignature = timeSignature.toHuman().toString();
+  fullTrackRecord.bars = bars.toHuman().toString();
+  fullTrackRecord.beats = beats.toHuman().toString();
+  fullTrackRecord.duration = duration.toHuman().toString();
+  fullTrackRecord.startBeatOffsetMs = startBeatOffsetMs.toHuman().toString();
+  fullTrackRecord.sectionsCount = sectionsCount.toHuman().toString();
+  fullTrackRecord.stemsCount = stemsCount.toHuman().toString();
+  await fullTrackRecord.save();
 }
